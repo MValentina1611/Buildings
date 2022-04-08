@@ -1,43 +1,66 @@
 package model;
 
 public class Queue<E> {
-    protected Node<E> head;
-    protected Node<E> tale;
-    protected int size;
-
+	
+    private Node<E> head;
+    private Node<E> tale;
+    private int size;
+    //No debe estar protected 
+    //intentar un atributo passengers
+    
     public Queue() {
-        this.head = this.tale = null;
+        head = null; 
+        tale = null;
         this.size = 0;
     }
 
     public boolean isEmpty() {
-        return this.head == null;
+    boolean empty = false;
+    	if(head == null)
+    	{
+    		empty = true;
+    	}
+        return empty;
     }
 
     public int size() {
         return this.size;
     }
 
-    public void enqueue(E e) {
-        Node<E> node = new Node(e);
-        if (this.isEmpty()) {
-            this.head = node;
-        } else {
-            this.tale.setNext(node);
+    public void enqueue(E e) 
+    {
+        Node<E> node = new Node<E>(e);
+
+        if (isEmpty())
+        {
+            head = node;
         }
+        else
+        {
+          tale.setNext(node);
+        }
+            tale = node;
+            System.out.println(tale.getItem().toString());
+            size++;
+     }
 
-        this.tale = node;
-        ++this.size;
+     public Node<E> dequeue()
+     {
+    	 System.out.println(head.toString());
+    	 Node<E> aux = head;
+    	 head = head.getNext();
+    	 System.out.println(head.toString());
+    	 size--;
+
+    	 return aux;
+     }
+
+
+    public Node<E> getHead() {
+        return head;
     }
-
-    public E dequeue() {
-        E aux = this.head.getItem();
-        this.head = this.head.getNext();
-        --this.size;
-        return aux;
-    }
-
-    public E getHead() {
-        return this.isEmpty() ? null : this.head.getItem();
+    
+    public Node<E> getTale() {
+        return tale;
     }
 }

@@ -3,35 +3,60 @@ package model;
 import java.util.ArrayList;
 
 public class Elevator {
+	
     private Passengers passengers;
     private boolean rising = true;
 
     public Elevator(Passengers passengers)
     {
         rising = true; //  El ascensor empieza en el primer piso
-        this.passengers= passengers;
+        this.passengers = passengers;
+        
     }
+    
     public ArrayList<Person> movements(int floorsNum)
     {
         ArrayList<Person> toOut = new ArrayList<Person>();
+        int currentFloor = 1;
+        System.out.println(floorsNum);
+        
         if(rising)
         {
-            for(int i = 1; i <= floorsNum; i++ )
+        	System.out.println("it's rising");
+            if(passengers.getPassengers().getHead().getItem().getfutureFloor() >= currentFloor)
             {
-                toOut.add(passengers.dequeueMinPriority(i));
+            	
+            	System.out.println(passengers.dequeueMinPriority(currentFloor).toString());
+            	
+            	if(currentFloor== floorsNum)
+            	{
+            		System.out.println("Llegó arriba");
+            		rising = false;
+            		movements(currentFloor);
+            	}
             }
-            rising = false;
+            else {
+            	movements(currentFloor+1);
+            }
         }
         else {
-            for(int i = floorsNum; i >= 1; i++ )
+            if(passengers.getPassengers().getHead().getItem().getfutureFloor() < currentFloor)
             {
-                toOut.add(passengers.dequeueMaxPriority(i));
+            	System.out.println("Bajando y sacando a");
+            	System.out.println(passengers.dequeueMaxPriority(currentFloor).toString());
             }
+            else
+            {
+            	movements(currentFloor-1);
+            }
+            
         }
         return toOut;
     }
-
+    
     public Passengers getPassengers() {
         return this.passengers;
     }
+    
+    
 }

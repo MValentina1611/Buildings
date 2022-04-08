@@ -10,10 +10,12 @@ public class Node<E> implements Comparable<E>{
         this.next = null;
     }
 
+    
     public Node() {
         this.item = null;
         this.next = null;
     }
+    
     public void setItem(E item) {
         this.item = item;
     }

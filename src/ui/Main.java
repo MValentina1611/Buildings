@@ -10,7 +10,7 @@ public class Main {
     private boolean exit;
     private Buildings buildings;
     private String msg2Print = "";
-
+    private int floorsNum;
     public Main() {
         this.sc = new Scanner(System.in);
         this.exit = false;
@@ -48,6 +48,7 @@ public class Main {
         String name = arrOfStr[0];
         int peopleQt = Integer.parseInt(arrOfStr[1]);
         int floors_num = Integer.parseInt(arrOfStr[2]);
+        floorsNum = floors_num;
         int offices_num = Integer.parseInt(arrOfStr[3]);
         this.buildings = new Buildings(name, offices_num);
         this.buildings.createBuilding(floors_num, (double)offices_num);
@@ -56,7 +57,8 @@ public class Main {
     }
 
     public void peopleCreation(int peopleQt) {
-        ArrayList<Person> peopleInBuilding = new ArrayList();
+        ArrayList<Person> peopleInBuilding = new ArrayList<Person>();
+        ArrayList<Person> peopleInBuildingPerFloor = new ArrayList<Person>();
         double floor= buildings.getBuildingHm().get(1);
 
         for(int i = 0; i < peopleQt; ++i) {
@@ -66,15 +68,24 @@ public class Main {
             int currentFloor = Integer.parseInt(arrOfStr[1]);
             int desiredOffice = Integer.parseInt(arrOfStr[2]);
             Person person = new Person(name, currentFloor, desiredOffice, false);
+            Person person2 = new Person(name, currentFloor, desiredOffice, false, realFutureFloor(buildings.which_Floor(person.desiredOffice)));
             peopleInBuilding.add(person);
+            peopleInBuildingPerFloor.add(person2);
         }
 
         this.buildings.sortToOffices(peopleInBuilding);
-        this.buildings.createElevator(peopleInBuilding);
-        this.msg(this.buildings.getElevator().movements((int) floor));
+        this.buildings.createElevator(peopleInBuildingPerFloor);
+        this.msg(this.buildings.getElevator().movements(floorsNum));
     }
 
-    public void msg(ArrayList<Person> personArrayList) {
+    public int realFutureFloor(int futureFloor)
+    {
+    	int real = floorsNum -(futureFloor-1); 
+    	return real;
+    }
+    
+    public void msg(ArrayList<Person> personArrayList) 
+    {
         this.msg2Print = this.msg2Print + "Movimientos del edificio " + this.buildings.getBuildingName() + "\n\n";
 
         int i;

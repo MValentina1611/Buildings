@@ -14,10 +14,16 @@ public class Person implements Comparable<Person> {
         this.isOnOffice = isOnOffice;
     }
 
-    public Person(Person person, int futureFloor) {
-        this.futureFloor = futureFloor;
+    public Person(String name, int currentFloor, int desiredOffice, boolean isOnOffice, int realFutureFloor) {
+    	 this.name = name;
+         this.currentFloor = currentFloor;
+         this.desiredOffice = desiredOffice;
+         this.isOnOffice = isOnOffice;
+    	this.futureFloor = realFutureFloor;
     }
 
+    
+    
     public String getName() {
         return this.name;
     }
@@ -39,14 +45,20 @@ public class Person implements Comparable<Person> {
     }
 
     public int compareTo(Person o) {
-        if (this.futureFloor < o.getfutureFloor()) {
+        if (this.currentFloor < o.getCurrentFloor()) {
             return -1;
         } else {
-            return this.futureFloor > o.getfutureFloor() ? 1 : 0;
+            return this.currentFloor > o.getCurrentFloor() ? 1 : 0;
         }
     }
 
     public int getfutureFloor() {
         return this.futureFloor;
     }
+    
+    public String toString()
+    {
+    	return "Name: "+name+"\nPiso en el que está: "+currentFloor+" Piso al que va: " + futureFloor;
+    }
+    
 }
