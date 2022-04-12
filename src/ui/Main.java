@@ -75,8 +75,9 @@ public class Main {
 
         this.buildings.sortToOffices(peopleInBuildingPerFloor);
         this.buildings.createElevator(peopleInBuildingPerFloor);
-        printArrayList(this.buildings.getElevator().movements());
-        this.msg(this.buildings.getElevator().movements());
+        this.buildings.getElevator().movements(1);
+        //printArrayList(this.buildings.getElevator().movements(1));
+        //this.msg(this.buildings.getElevator().movements());
     }
 
     public int realFutureFloor(int futureFloor)

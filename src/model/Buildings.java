@@ -10,7 +10,7 @@ public class Buildings {
     private double officesPerFloor;
     public HashMap<Integer, Double> buildingHm;
     private Elevator elevator;
-    public int floors_num;
+    public int totalFloorsNum;
 
     public Buildings(String buildingName, int offices_num) {
         this.buildingName = buildingName;
@@ -18,7 +18,7 @@ public class Buildings {
 
     public void createBuilding(int floors_num, double offices_num) {
         this.buildingHm = new HashMap();
-
+        totalFloorsNum = floors_num; 
         for(int i = 1; i <= floors_num; ++i) {
             this.buildingHm.put(i, offices_num);
         }
@@ -72,7 +72,7 @@ public class Buildings {
         Passengers passengers = new Passengers(personArrayList);
         System.out.println("Se Crea el passengers");
         //printQueue(passengers);
-        this.elevator = new Elevator(passengers);
+        this.elevator = new Elevator(passengers, totalFloorsNum);
         System.out.println("Creo elevator");
     }
 
@@ -98,8 +98,9 @@ public class Buildings {
         return this.elevator;
     }
 
+    
     public void setFloors_num(int floors_num) {
-        this.floors_num = floors_num;
+        this.totalFloorsNum = floors_num;
     }
 
     public HashMap<Integer, Double> getBuildingHm() {
