@@ -30,7 +30,7 @@ public class Buildings {
     public void sortToOffices(ArrayList<Person> personArrayList) {
 
         for(int i = 0; i < personArrayList.size(); ++i) {
-            int floor2Go = this.which_Floor((double)((Person)personArrayList.get(i)).getDesiredOffice());
+            int floor2Go = personArrayList.get(i).getfutureFloor();
             System.out.println(personArrayList.get(i));
             System.out.println(floor2Go);
             if (floor2Go != 0 && (Double)this.buildingHm.get(floor2Go) != 0.0D) {

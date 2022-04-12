@@ -73,9 +73,10 @@ public class Main {
             peopleInBuildingPerFloor.add(person2);
         }
 
-        this.buildings.sortToOffices(peopleInBuilding);
+        this.buildings.sortToOffices(peopleInBuildingPerFloor);
         this.buildings.createElevator(peopleInBuildingPerFloor);
-        this.msg(this.buildings.getElevator().movements(floorsNum));
+        printArrayList(this.buildings.getElevator().movements());
+        this.msg(this.buildings.getElevator().movements());
     }
 
     public int realFutureFloor(int futureFloor)
@@ -83,6 +84,17 @@ public class Main {
     	int real = floorsNum -(futureFloor-1); 
     	return real;
     }
+    
+    public void printArrayList(ArrayList<Person> toPrint)
+    {
+    	System.out.println(toPrint.size());
+    	for(int i = 0; i < toPrint.size(); i ++)
+    	{
+    		System.out.println(toPrint.get(i));
+    	}
+    }
+    
+    
     
     public void msg(ArrayList<Person> personArrayList) 
     {

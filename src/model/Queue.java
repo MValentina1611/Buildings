@@ -46,10 +46,9 @@ public class Queue<E> {
 
      public Node<E> dequeue()
      {
-    	 System.out.println(head.toString());
     	 Node<E> aux = head;
     	 head = head.getNext();
-    	 System.out.println(head.toString());
+    	 
     	 size--;
 
     	 return aux;

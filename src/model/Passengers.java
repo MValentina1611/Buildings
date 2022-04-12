@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Currency;
 
 public class Passengers{
 
@@ -21,7 +22,9 @@ public class Passengers{
         
     }
 
-    public Person dequeueMinPriority(int currentFloor)
+    
+    /*
+    public Person dequeueMinPriority(int currentFloor, boolean reachedFloor)
 	{
 		Person toOut = null;
 		Node<Person> aux2 = new Node<>(toOut);
@@ -29,7 +32,7 @@ public class Passengers{
 		
 		while(auxh != null)
 		{
-			if( auxh.getItem().getfutureFloor() >= currentFloor)
+			if( auxh.getItem().getfutureFloor() >= auxh.getItem().getCurrentFloor() && ( auxh.getItem().getfutureFloor() == currentFloor || reachedFloor == true) )
 			{
 				aux2.setNext(auxh.getNext());
 				toOut = auxh.getItem();
@@ -41,7 +44,7 @@ public class Passengers{
 		return toOut;
 		
 	}
-    public Person dequeueMaxPriority( int currentFloor)
+    public Person dequeueMaxPriority(int currentFloor)
 	{
 		Person toOut = null;
 		Node<Person> aux2 = new Node<>();
@@ -49,7 +52,7 @@ public class Passengers{
 		
 		while(auxh != null)
 		{
-			if( auxh.getItem().getfutureFloor() < currentFloor)
+			if( auxh.getItem().getfutureFloor() < auxh.getItem().getCurrentFloor() && (currentFloor == auxh.getItem().getCurrentFloor()    )
 			{
 				aux2.setNext(auxh.getNext());
 				toOut = auxh.getItem();
@@ -61,7 +64,7 @@ public class Passengers{
 		return toOut;
 				
 	}
-
+    */
 	public Queue<Person> getPassengers() {
 		return passengers;
 	}
