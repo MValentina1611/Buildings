@@ -4,23 +4,25 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
+import strcs.HashTable;
+
 
 
 public class Buildings {
     public String buildingName;
     private double officesTotal;
     private double officesPerFloor;
-    public HashMap<Integer, Double> buildingHm;
+    public HashTable<Integer, Double> buildingHm;
     private Elevator elevator;
     public int floors_num;
-    private HashMap<Integer, Office> buildingOfficesHm;
+    private HashTable<Integer, Office> buildingOfficesHm;
 
     public Buildings(String buildingName, int offices_num) {
         this.buildingName = buildingName;
     }
 
     public void createBuilding(int floors_num, double offices_num) {
-        this.buildingHm = new HashMap();
+        this.buildingHm = new HashTable<>();
         
         for(int i = 1; i <= floors_num; ++i) {
             this.buildingHm.put(i, offices_num);
@@ -34,7 +36,7 @@ public class Buildings {
 
     private void createOffices()
     {
-    	this.buildingOfficesHm = new HashMap<Integer,Office>();
+    	this.buildingOfficesHm = new HashTable<Integer,Office>();
     	for(int i = 1; i <= officesTotal; i++)
     	{
     		buildingOfficesHm.put(i, new Office(i));
@@ -135,7 +137,7 @@ public class Buildings {
         this.floors_num = floors_num;
     }
 
-    public HashMap<Integer, Double> getBuildingHm() {
+    public HashTable<Integer, Double> getBuildingHm() {
         return buildingHm;
     }
 
@@ -143,7 +145,7 @@ public class Buildings {
 		return officesTotal;
 	}
 
-	public HashMap<Integer, Office> getBuildingOfficesHm() {
+	public HashTable<Integer, Office> getBuildingOfficesHm() {
 		return buildingOfficesHm;
 	}
     

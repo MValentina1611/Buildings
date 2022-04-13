@@ -5,6 +5,9 @@ public class HashTable<K,V> {
 	private final int MAX_SIZE = 23;
 	private LinkedListHT<K,V>[] table;
 
+	//The collisions will be fixed by separate-chaining 
+	
+	@SuppressWarnings("unchecked")
 	public HashTable()
 	{
 		table = (LinkedListHT<K, V>[]) new LinkedListHT<?,?>[MAX_SIZE];
