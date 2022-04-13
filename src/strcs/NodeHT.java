@@ -6,7 +6,7 @@ public class NodeHT<K,V> {
     private V value;
 
     private NodeHT<K, V> next;
-    private NodeHT<K, V> prev;
+    
 
     public NodeHT(K key, V value){
         this.key = key;
@@ -22,15 +22,11 @@ public class NodeHT<K,V> {
     public void setNext(NodeHT<K, V> n){
         next = n;
     }
-    public void setPrev(NodeHT<K, V> p){
-        prev = p;
-    }
+    
     public NodeHT<K, V> getNext(){
         return next;
     }
-    public NodeHT<K, V> getPrev(){
-        return prev;
-    }
+
 	
 	
 }

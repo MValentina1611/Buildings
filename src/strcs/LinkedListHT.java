@@ -3,23 +3,23 @@ package strcs;
 public class LinkedListHT<K,V> {
 
 	private NodeHT<K,V> head;
-	
-	private int size;
 
-	public LinkedListHT() 
-	{
+
+	public LinkedListHT() {
 		head = null;
-		size = 0;
 	}
 
-	public NodeHT<K,V> getHead() {
+	public NodeHT<K,V> getHead() 
+	{
 	    return head;
 	}
 	
 	public void add(NodeHT<K,V> newNode)
 	{
-		if (head==null){
+		if (head == null)
+		{
             head=newNode;
+            
         }else{
             NodeHT<K,V> aux=head;
        
@@ -51,7 +51,7 @@ public class LinkedListHT<K,V> {
 
     private NodeHT<K, V> search(K key, NodeHT<K, V> current)
     {
-        if(current != head)
+        if(current != null)
         {
             if(current.getKey().equals(key))
             {
