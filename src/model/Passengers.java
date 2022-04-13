@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import strcs.Queue;
+
 
 public class Passengers{
 

@@ -1,4 +1,4 @@
-package model;
+package strcs;
 
 public class Queue<E> {
 	
