@@ -6,50 +6,52 @@ public class Elevator {
 	
     private Passengers passengers;
     private boolean rising = true;
-    private int floorsNum;
-    //ArrayList<Person> toOut;
-    public Elevator(Passengers passengers, int floorsNum)
+    private int [] reachedFloors;
+    ArrayList<Person> toOut;
+    public Elevator(Passengers passengers)
     {
         rising = true; //  El ascensor empieza en el primer piso
         this.passengers = passengers;
-        //toOut = new ArrayList<Person>();
-        this.floorsNum = floorsNum;
-        
+        toOut = new ArrayList<Person>();
     }
     
-    public void movements(int currentFloor)
+    public ArrayList<Person> movements()
     {
+        
        // System.out.println(floorsNum);
         if(passengers.getPassengers().getHead()!= null)
         {
         	if(rising)
         	{
-        		System.out.println("it's rising");
-        		if(currentFloor <= floorsNum)
+        		//System.out.println("it's rising");
+        		if(passengers.getPassengers().getHead().getItem().getfutureFloor() >= passengers.getPassengers().getHead().getItem().getCurrentFloor() )
         		{
-        			passengers.dequeueByPriority(currentFloor);
+        			
+        			toOut.add(passengers.getPassengers().dequeue().getItem());
         			//System.out.println(toOut.size());
         			//System.out.println(toOut.get(toOut.size()-1));
-        			System.out.println(passengers.getToOut().get(passengers.getToOut().size()-1).toString());
-        			movements(currentFloor+1);	
+        			movements();
+        			
         		}
-        		if( currentFloor == floorsNum)
-        		{
+        		else {
         			rising = false;
-        			movements(currentFloor--);
+        			movements();
         		}
         	}
         	else {
-        		System.out.println("it's going Down");
-        		//passengers.dequeueByPriority(currentFloor);
-        		//System.out.println(toOut.size());
-        		//movements(currentFloor--);
+        		if( passengers.getPassengers().getHead().getItem().getfutureFloor() < passengers.getPassengers().getHead().getItem().getCurrentFloor())
+        		{
+        			//System.out.println("it's going Down");
+        			toOut.add(passengers.getPassengers().dequeue().getItem());
+        			//System.out.println(toOut.size());
+        			movements();
 
         		}
 
         	}
         }
-    
+        return toOut;
+    }
     
     /*
     public boolean verifyReachedFloors(int floorToVerify)

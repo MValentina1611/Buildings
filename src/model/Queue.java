@@ -40,7 +40,7 @@ public class Queue<E> {
           tale.setNext(node);
         }
             tale = node;
-            System.out.println(tale.getItem().toString());
+            
             size++;
      }
 

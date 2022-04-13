@@ -58,7 +58,7 @@ public class Person implements Comparable<Person> {
     
     public String toString()
     {
-    	return "Name: "+name+"\nPiso en el que está: "+currentFloor+" Piso al que va: " + futureFloor;
+    	return name;
     }
     
 }

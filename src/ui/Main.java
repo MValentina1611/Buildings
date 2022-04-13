@@ -2,18 +2,26 @@ package ui;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+
+
 import model.Buildings;
 import model.Person;
 
 public class Main {
+	
+	
     private Scanner sc;
-    private boolean exit;
+    //private boolean exit;
     private Buildings buildings;
     private String msg2Print = "";
     private int floorsNum;
+    private ArrayList<Person> peopleBuilding;
+    
     public Main() {
         this.sc = new Scanner(System.in);
-        this.exit = false;
+       // this.exit = false;
+        this.peopleBuilding = new ArrayList<Person>();
     }
 
     public static void main(String[] args) {
@@ -21,21 +29,33 @@ public class Main {
         main.menu();
     }
 
-    public void menu() {
+    public void menu() 
+    {
         System.out.println("\n");
-        System.out.println("Please select an option\n1)Create buildings\n2)Exit\n");
+        System.out.println("Please select an option\n(1)Create buildings\n(0)Exit\n");
+        
         int option = this.sc.nextInt();
-        if (option != 2) {
+        
+        if (option != 0) 
+        {
             this.sc.nextLine();
             System.out.println("Please create the building");
             int building_num = this.sc.nextInt();
             this.sc.nextLine();
 
-            for(int i = 0; i < building_num; ++i) {
+            for(int i = 0; i < building_num; ++i)
+            {
                 this.buildingCreation();
             }
 
             System.out.println(this.msg2Print);
+            System.out.println("Enter (2) to check offices");
+            option = this.sc.nextInt();
+            if(option == 2)
+            {
+            	this.checkOffices();
+            }
+            
         } else {
             System.out.println("Goodbye\n");
         }
@@ -71,13 +91,13 @@ public class Main {
             Person person2 = new Person(name, currentFloor, desiredOffice, false, realFutureFloor(buildings.which_Floor(person.desiredOffice)));
             peopleInBuilding.add(person);
             peopleInBuildingPerFloor.add(person2);
+            peopleBuilding.add(person2);
         }
 
         this.buildings.sortToOffices(peopleInBuildingPerFloor);
         this.buildings.createElevator(peopleInBuildingPerFloor);
-        this.buildings.getElevator().movements(1);
-        //printArrayList(this.buildings.getElevator().movements(1));
-        //this.msg(this.buildings.getElevator().movements());
+        printArrayList(this.buildings.getElevator().movements());
+        this.msg(this.buildings.getElevator().movements());
     }
 
     public int realFutureFloor(int futureFloor)
@@ -95,7 +115,14 @@ public class Main {
     	}
     }
     
-    
+    public void checkOffices()
+    {
+    	this.buildings.sortOfficesToCheck(this.peopleBuilding);
+    	for(int i = 1; i <= this.buildings.getOfficesTotal(); i++)
+    	{
+    		System.out.println(this.buildings.getBuildingOfficesHm().get(i).toString());
+    	}
+    }
     
     public void msg(ArrayList<Person> personArrayList) 
     {
