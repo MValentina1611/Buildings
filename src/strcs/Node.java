@@ -45,7 +45,8 @@ public class Node<E> implements Comparable<E>{
 
     @Override
     public String toString() {
-        return "{"+getItem();
+    	
+        return getItem().toString();
     }
 
 

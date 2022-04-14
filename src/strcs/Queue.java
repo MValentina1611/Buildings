@@ -3,14 +3,14 @@ package strcs;
 public class Queue<E> {
 	
     private Node<E> head;
-    private Node<E> tale;
+    private Node<E> tail;
     private int size;
     //No debe estar protected 
     //intentar un atributo passengers
     
     public Queue() {
         head = null; 
-        tale = null;
+        tail = null;
         this.size = 0;
     }
 
@@ -34,24 +34,31 @@ public class Queue<E> {
         if (isEmpty())
         {
             head = node;
+            tail = head;
         }
         else
         {
-          tale.setNext(node);
+          tail.setNext(node);
         }
-            tale = node;
+            tail = node;
             
             size++;
      }
 
      public Node<E> dequeue()
      {
-    	 Node<E> aux = head;
-    	 head = head.getNext();
-    	 
-    	 size--;
+    	 if(isEmpty())
+    	 {
+    		 return null;
+    	 }else
+    	 {
+        	 Node<E> aux = head;
+        	 head = head.getNext();
+        	 
+        	 size--;
 
-    	 return aux;
+        	 return aux;
+    	 }
      }
 
 
@@ -59,7 +66,7 @@ public class Queue<E> {
         return head;
     }
     
-    public Node<E> getTale() {
-        return tale;
+    public Node<E> getTail() {
+        return tail;
     }
 }
